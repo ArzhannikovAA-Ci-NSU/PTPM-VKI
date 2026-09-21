@@ -3,14 +3,12 @@ import sys
 import math
 import os
 
-# 1. Настройка логирования (строго по заданию)
+# логи
 log_format = "%(asctime)s | [%(levelname)-7s] | %(message)s"
 date_format = "%Y-%m-%d %H:%M:%S"
 
-# Создаем папку logs, если её нет
 os.makedirs("logs", exist_ok=True)
 
-# Базовая настройка корневого логгера
 logging.basicConfig(
     level=logging.DEBUG,
     format=log_format,
@@ -23,10 +21,8 @@ logging.basicConfig(
 
 
 def process_triangle(side_a: str, side_b: str, side_c: str):
-    """Вычисляет вид треугольника и координаты его вершин."""
     logging.info(f"Получен запрос: A='{side_a}', B='{side_b}', C='{side_c}'")
 
-    # 1. Проверка на нечисловые данные
     try:
         a = float(side_a)
         b = float(side_b)
@@ -53,18 +49,16 @@ def process_triangle(side_a: str, side_b: str, side_c: str):
     else:
         tri_type = "разносторонний"
 
-    # 4. Расчет координат вершин (без масштабирования)
-    # Размещаем первую вершину в (0, 0), вторую на оси X на расстоянии c
+    # координаты вершин
     x1, y1 = 0.0, 0.0
     x2, y2 = c, 0.0
 
-    # Третья вершина через теорему косинусов
     x3 = (b ** 2 + c ** 2 - a ** 2) / (2 * c)
     y3_squared = b ** 2 - x3 ** 2
-    # Защита от отрицательного значения из-за погрешности float
+
     y3 = math.sqrt(max(0, y3_squared))
 
-    # Округляем до целых чисел (по требованию задания: (int, int))
+    # до целых чисел
     coords_int = [(round(x1), round(y1)), (round(x2), round(y2)), (round(x3), round(y3))]
 
     logging.info(f"Успешный запрос. Тип: '{tri_type}', Координаты: {coords_int}")
@@ -74,21 +68,21 @@ def process_triangle(side_a: str, side_b: str, side_c: str):
 if __name__ == "__main__":
     logging.info("Приложение запущено")
 
-    print("=== Автоматические тесты ===\n")
+    print("Автоматические тесты\n")
 
-    print("--- Тест 1: Корректные данные (разносторонний) ---")
+    print("Тест 1: Корректные данные (разносторонний)")
     res_type, res_coords = process_triangle("3", "4", "5")
     print(f"Результат: {res_type}, {res_coords}\n")
 
-    print("--- Тест 2: Некорректные числовые данные (не треугольник) ---")
+    print("Тест 2: Некорректные числовые данные (не треугольник)")
     res_type, res_coords = process_triangle("1", "1", "10")
     print(f"Результат: {res_type}, {res_coords}\n")
 
-    print("--- Тест 3: Нечисловые данные ---")
+    print("Тест 3: Нечисловые данные")
     res_type, res_coords = process_triangle("abc", "4", "5")
     print(f"Результат: {res_type}, {res_coords}\n")
 
-    print("=== Ручной ввод параметров ===\n")
+    print("Ручной ввод параметров\n")
     print("Введите длины сторон треугольника:")
 
     # Ручной ввод с консоли
