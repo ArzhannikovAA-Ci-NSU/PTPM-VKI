@@ -4,6 +4,7 @@ import sys
 import os
 from main import process_triangle
 
+
 # аналогична лабе1
 log_format = "%(asctime)s | [%(levelname)-7s] | %(message)s"
 date_format = "%Y-%m-%d %H:%M:%S"
@@ -24,9 +25,9 @@ class TestTriangleProcessor(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        logger.info("=" * 40)
+        logger.info("=" * 30)
         logger.info("Автотесты 'main.py'")
-        logger.info("=" * 40)
+        logger.info("=" * 30)
 
     @classmethod
     def tearDownClass(cls):
