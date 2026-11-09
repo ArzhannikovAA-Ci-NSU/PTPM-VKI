@@ -1,0 +1,23 @@
+# Виртуальное окружение Python
+venv/
+
+# Скомпилированные файлы Python
+__pycache__/
+*.pyc
+*.pyo
+
+# База данных SQLite
+*.db
+
+# Логи
+logs/
+*.log
+
+# Настройки IDE
+.idea/
+.vscode/
+*.swp
+
+# Файлы ОС
+.DS_Store
+Thumbs.db
